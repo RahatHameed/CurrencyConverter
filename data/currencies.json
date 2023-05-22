@@ -1,0 +1,9 @@
+{
+  "baseCurrency": "EUR",
+  "exchangeRates" : {
+    "EUR": 1,
+    "USD": 1.0857,
+    "CHF": 0.98,
+    "CNY": 7.61
+  }
+}
