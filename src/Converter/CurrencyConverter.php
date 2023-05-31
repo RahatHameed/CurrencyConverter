@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Converter;
 
 use App\OutputData\OutputDataInterface;
+use Exception;
+use RuntimeException;
 
 class CurrencyConverter implements CurrencyConverterInterface
 {
@@ -18,15 +20,19 @@ class CurrencyConverter implements CurrencyConverterInterface
 
     public function convert(float $amount, Currency $currency): string
     {
-        $convertedCurrencies = [];
-        foreach ($currency->getExchangeRates() as $thisCurrency => $rate) {
-            $convertedAmount = $amount;
-            if($currency->getBaseCurrency() !== $thisCurrency) {
-                $convertedAmount = $amount * $rate;
+        try {
+            $convertedCurrencies = [];
+            foreach ($currency->getExchangeRates() as $thisCurrency => $rate) {
+                $convertedAmount = $amount;
+                if ($currency->getBaseCurrency() !== $thisCurrency) {
+                    $convertedAmount = $amount * $rate;
+                }
+                $convertedCurrencies[$thisCurrency] = $convertedAmount;
             }
-            $convertedCurrencies[$thisCurrency] = number_format($convertedAmount, 2);
+            return $this->outputData->convertData($convertedCurrencies);
+        } catch (Exception $e) {
+            throw new RuntimeException('There is a error converting the currencies: ' . $e->getMessage());
         }
-        return $this->outputData->convertData($convertedCurrencies);
     }
 
 }

@@ -12,7 +12,7 @@ class CurrencyConverterTest extends TestCase
 {
     public function testCurrencyConverterJsonOutput(): void
     {
-        $expected = '{"EUR":"100.00","USD":"108.57","CHF":"98.00","CNY":"761.00"}';
+        $expected = '{"EUR":100,"USD":108.57000000000001,"CHF":98,"CNY":761}';
         $inputDataObj = (new InputDataFactory())->create('json', 'currencies.json');
         $outputDataObj = (new OutputDataFactory())->create('json');
         $currencyObj = new Currency($inputDataObj);
@@ -40,10 +40,10 @@ class CurrencyConverterTest extends TestCase
     public function testCurrencyConverterCsvOutput(): void
     {
         $expected = 'Currency,Amount
-EUR,100.00
+EUR,100
 USD,108.57
-CHF,98.00
-CNY,761.00
+CHF,98
+CNY,761
 ';
         $inputDataObj = (new InputDataFactory())->create('json', 'currencies.json');
         $outputDataObj = (new OutputDataFactory())->create('csv');

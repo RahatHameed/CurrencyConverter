@@ -15,7 +15,7 @@ class CurrencyConverterTest extends TestCase
     public function testConvertCurrency(): void
     {
         $baseCurrency = 'EUR';
-        $expectedData = '{"EUR":"100.00","USD":"108.57","CHF":"98.00","CNY":"761.00"}';
+        $expectedData = '{"EUR":100,"USD":108.57000000000001,"CHF":98,"CNY":761}';
 
         $currencyMock = $this->createMock(Currency::class);
         $currencyMock
