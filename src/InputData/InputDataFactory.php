@@ -2,6 +2,8 @@
 
 namespace App\InputData;
 
+use InvalidArgumentException;
+
 class InputDataFactory
 {
     public function create(string $inputFormat, string $inputFilename): InputDataInterface
@@ -10,6 +12,7 @@ class InputDataFactory
             'json' => new JsonInputData($inputFilename),
             'csv' => new CsvInputData($inputFilename),
             'xml' => new XmlInputData($inputFilename),
+            default => throw new InvalidArgumentException('Invalid input format: ' . $inputFormat),
         };
     }
 }
