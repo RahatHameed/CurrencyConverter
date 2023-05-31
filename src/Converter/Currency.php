@@ -15,8 +15,17 @@ class Currency
     public function __construct(InputDataInterface $inputData)
     {
         $this->inputData = $inputData;
-        $this->baseCurrency = $this->inputData->getData()['baseCurrency'];
-        $this->exchangeRates = $this->inputData->getData()['exchangeRates'];
+        $this->initialize();
+    }
+
+    private function initialize(): void
+    {
+        $data = $this->inputData->getData();
+        if (!isset($data['baseCurrency']) || !isset($data['exchangeRates'])) {
+            throw new \RuntimeException('Invalid data format for Currency');
+        }
+        $this->baseCurrency = $data['baseCurrency'];
+        $this->exchangeRates = $data['exchangeRates'];
     }
 
     public function getBaseCurrency(): string
