@@ -16,12 +16,8 @@ class JsonOutputDataTest extends TestCase
             "CNY" => 7.61
         ];
 
-        $expectedResult = '{EUR: 1, USD: 1.0857, CHF: 0.98, CNY: 7.61}';
-        $jsonOutputData = $this->createMock(JsonOutputData::class);
-
-        $jsonOutputData->expects($this->once())
-            ->method('convertData')
-            ->willReturn($expectedResult);
+        $expectedResult = '{"EUR":1,"USD":1.0857,"CHF":0.98,"CNY":7.61}';
+        $jsonOutputData = new JsonOutputData();
         $actualResult = $jsonOutputData->convertData($inputData);
         $this->assertEquals($expectedResult, $actualResult);
     }
