@@ -13,7 +13,7 @@ class InputDataFactoryTest extends TestCase
     public function testInstanceOfJsonInputData(): void
     {
         $factory = new InputDataFactory();
-        $inputData = $factory->create('json');
+        $inputData = $factory->create('json', 'currencies.json');
 
         $this->assertInstanceOf(JsonInputData::class, $inputData);
     }
@@ -21,7 +21,7 @@ class InputDataFactoryTest extends TestCase
     public function testInstanceOfCsvInputData(): void
     {
         $factory = new InputDataFactory();
-        $inputData = $factory->create('csv');
+        $inputData = $factory->create('csv', '');
 
         $this->assertInstanceOf(CsvInputData::class, $inputData);
     }
@@ -29,7 +29,7 @@ class InputDataFactoryTest extends TestCase
     public function testInstanceOfXmlInputData(): void
     {
         $factory = new InputDataFactory();
-        $inputData = $factory->create('xml');
+        $inputData = $factory->create('xml', '');
 
         $this->assertInstanceOf(XmlInputData::class, $inputData);
     }

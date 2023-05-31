@@ -9,7 +9,12 @@ use RuntimeException;
 abstract class AbstractInputData implements InputDataInterface
 {
     private const DATA_PATH = __DIR__ . '/../../data/';
-    protected const FILE_NAME = '';
+    private string $inputFilename;
+
+    public function __construct(string $inputFilename)
+    {
+        $this->inputFilename = $inputFilename;
+    }
 
     public function getData(): array
     {
@@ -35,7 +40,7 @@ abstract class AbstractInputData implements InputDataInterface
 
     private function getFileName(): string
     {
-        return self::DATA_PATH . $this::FILE_NAME;
+        return self::DATA_PATH . $this->inputFilename;
     }
 
     abstract protected function convertToArray(string $rawData): array;

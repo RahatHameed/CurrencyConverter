@@ -8,7 +8,6 @@ use RuntimeException;
 
 class JsonInputData extends AbstractInputData
 {
-    protected const FILE_NAME = 'currencies.json';
     protected function convertToArray(string $rawData): array
     {
         $data = null;

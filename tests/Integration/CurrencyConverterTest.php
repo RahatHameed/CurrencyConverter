@@ -13,7 +13,7 @@ class CurrencyConverterTest extends TestCase
     public function testCurrencyConverterJsonOutput(): void
     {
         $expected = '{"EUR":"100.00","USD":"108.57","CHF":"98.00","CNY":"761.00"}';
-        $inputDataObj = (new InputDataFactory())->create('json');
+        $inputDataObj = (new InputDataFactory())->create('json', 'currencies.json');
         $outputDataObj = (new OutputDataFactory())->create('json');
         $currencyObj = new Currency($inputDataObj);
         $converterObj = new CurrencyConverter($outputDataObj);
@@ -27,7 +27,7 @@ class CurrencyConverterTest extends TestCase
     {
         $expected = '{"EUR":1,"USD":1,"CHF":1,"CNY":1}';
 
-        $inputDataObj = (new InputDataFactory())->create('json');
+        $inputDataObj = (new InputDataFactory())->create('json', 'currencies.json');
         $outputDataObj = (new OutputDataFactory())->create('json');
         $currencyObj = new Currency($inputDataObj);
         $converterObj = new CurrencyConverter($outputDataObj);
@@ -45,7 +45,7 @@ USD,108.57
 CHF,98.00
 CNY,761.00
 ';
-        $inputDataObj = (new InputDataFactory())->create('json');
+        $inputDataObj = (new InputDataFactory())->create('json', 'currencies.json');
         $outputDataObj = (new OutputDataFactory())->create('csv');
         $currencyObj = new Currency($inputDataObj);
         $converterObj = new CurrencyConverter($outputDataObj);

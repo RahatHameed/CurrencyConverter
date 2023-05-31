@@ -6,7 +6,6 @@ namespace App\InputData;
 
 class XmlInputData extends AbstractInputData
 {
-    protected const FILE_NAME = 'currencies.xml';
     protected function convertToArray(string $rawData): array
     {
         /**

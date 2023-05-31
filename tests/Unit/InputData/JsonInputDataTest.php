@@ -16,6 +16,7 @@ class JsonInputDataTest extends TestCase
     public function setUp(): void
     {
         $this->jsonInputData = $this->getMockBuilder(JsonInputData::class)
+            ->disableOriginalConstructor()
             ->onlyMethods(['receiveRawData'])
             ->getMock();
 
